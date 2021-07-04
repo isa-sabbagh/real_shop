@@ -16,7 +16,7 @@ class OrderScreen extends StatelessWidget {
                 Provider.of<Orders>(context, listen: false).fetchAndSetOrders(),
             builder: (ctx, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator());
               } else {
                 if (snapshot.error != null) {
                   return Center(child: Text('An error'));
