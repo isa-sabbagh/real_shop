@@ -16,14 +16,14 @@ class AppDrawer extends StatelessWidget {
             automaticallyImplyLeading: false,
           ),
           ListTile(
-            leading: Icon(Icons.shop),
-            title: Text('Orders'),
+            leading: Icon(Icons.payment),
+            title: Text('Shop'),
             onTap: () => Navigator.of(context).pushReplacementNamed('/'),
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.payment),
-            title: Text('Shop'),
+            leading: Icon(Icons.shop),
+            title: Text('Orders'),
             onTap: () => Navigator.of(context)
                 .pushReplacementNamed(OrderScreen.routeName),
           ),

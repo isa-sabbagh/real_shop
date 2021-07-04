@@ -16,33 +16,27 @@ class UserProductItem extends StatelessWidget {
     final scaffold = ScaffoldMessenger.of(context);
 
     return ListTile(
-      title: Text(title),
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage(imgUrl),
-      ),
-      trailing: Container(
-        width: 100,
-        child: Row(
-          children: [
-            IconButton(
-                onPressed: () => Navigator.of(context)
-                    .pushNamed(EditProductScreen.routeName, arguments: id),
-                icon: Icon(Icons.edit)),
-            IconButton(
-                color: Theme.of(context).errorColor,
-                onPressed: () async {
-                  try {
-                    await Provider.of<Products>(context, listen: false)
-                        .deleteProduct(id);
-                  } catch (e) {
-                    scaffold.showSnackBar(
-                        SnackBar(content: Text('Deleting Failed ＞﹏＜')));
-                  }
-                },
-                icon: Icon(Icons.delete)),
-          ],
-        ),
-      ),
-    );
+        title: Text(title),
+        leading: CircleAvatar(backgroundImage: NetworkImage(imgUrl)),
+        trailing: Container(
+            width: 100,
+            child: Row(children: [
+              IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () => Navigator.of(context)
+                      .pushNamed(EditProductScreen.routeName, arguments: id)),
+              IconButton(
+                  icon: Icon(Icons.delete),
+                  color: Theme.of(context).errorColor,
+                  onPressed: () async {
+                    try {
+                      await Provider.of<Products>(context, listen: false)
+                          .deleteProduct(id);
+                    } catch (e) {
+                      scaffold.showSnackBar(
+                          SnackBar(content: Text('Deleting Failed ＞﹏＜')));
+                    }
+                  })
+            ])));
   }
 }

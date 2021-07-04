@@ -27,38 +27,30 @@ class ProductItem extends StatelessWidget {
               )),
         ),
         footer: GridTileBar(
-          title: Text(
-            product.title,
-            textAlign: TextAlign.center,
-          ),
+          backgroundColor: Colors.black12,
+          title: Text(product.title, textAlign: TextAlign.center),
           leading: Consumer<Product>(
             builder: (ctx, product, _) => IconButton(
-              icon:
-                  Icon(product.isFav ? Icons.favorite : Icons.favorite_border),
-              color: Theme.of(context).accentColor,
-              onPressed: () {
-                product.toggleFavState(authData.token, authData.userId);
-              },
-            ),
+                icon: Icon(
+                    product.isFav ? Icons.favorite : Icons.favorite_border),
+                color: Theme.of(context).accentColor,
+                onPressed: () =>
+                    product.toggleFavState(authData.token, authData.userId)),
           ),
           trailing: IconButton(
-            icon: Icon(Icons.shopping_cart),
-            color: Theme.of(context).accentColor,
-            onPressed: () {
-              cart.addItem(product.id, product.price, product.title);
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text('Added to Cart'),
-                duration: Duration(seconds: 2),
-                action: SnackBarAction(
-                    label: 'Undo',
-                    onPressed: () {
-                      cart.removeSingleItem(product.id);
-                    }),
-              ));
-            },
-          ),
-          backgroundColor: Colors.black12,
+              icon: Icon(Icons.shopping_cart),
+              color: Theme.of(context).accentColor,
+              onPressed: () {
+                cart.addItem(product.id, product.price, product.title);
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Added to Cart'),
+                  duration: Duration(seconds: 2),
+                  action: SnackBarAction(
+                      label: 'Undo',
+                      onPressed: () => cart.removeSingleItem(product.id)),
+                ));
+              }),
         ),
       ),
     );
