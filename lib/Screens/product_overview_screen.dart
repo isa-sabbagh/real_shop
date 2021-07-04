@@ -38,47 +38,36 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
             onSelected: (FilterOption selectedVal) {
-              setState(() {
-                if (selectedVal == FilterOption.Favorites) {
-                  _showOnlyFav = true;
-                } else {
-                  _showOnlyFav = false;
-                }
-              });
+              setState(() => selectedVal == FilterOption.Favorites
+                  ? _showOnlyFav = true
+                  : _showOnlyFav = false);
             },
             itemBuilder: (_) => [
               PopupMenuItem(
-                child: Text('Only Favorite'),
-                value: FilterOption.Favorites,
-              ),
-              PopupMenuItem(
-                child: Text('Show All'),
-                value: FilterOption.All,
-              ),
+                  child: Text('Only Favorite'), value: FilterOption.Favorites),
+              PopupMenuItem(child: Text('Show All'), value: FilterOption.All)
             ],
           ),
           Consumer<Cart>(
               child: IconButton(
-                icon: Icon(Icons.shopping_cart),
-                onPressed: () =>
-                    Navigator.of(context).pushNamed(CartScreen.routeName),
-              ),
+                  icon: Icon(Icons.shopping_cart),
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed(CartScreen.routeName)),
               builder: (_, cart, ch) => Badge(
-                    child: ch,
-                    value: cart.itemCount.toString(),
-                    color: Colors.red,
-                  ))
+                  child: ch,
+                  value: cart.itemCount.toString(),
+                  color: Colors.red))
         ],
       ),
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
           : ProductsGrid(_showOnlyFav),
       drawer: AppDrawer(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   tooltip: 'Increment',
+      //   child: Icon(Icons.add),
+      // ),
     );
   }
 }
