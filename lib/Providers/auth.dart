@@ -13,7 +13,7 @@ class Auth with ChangeNotifier {
   String _userId;
   Timer _authTimer;
 
-  bool get isAuth => token != '';
+  bool get isAuth => token == null;
 
   String get token {
     if (_expiryDate != null &&
@@ -21,7 +21,7 @@ class Auth with ChangeNotifier {
         _token != '') {
       return _token;
     }
-    return '';
+    return null;
   }
 
   String get userId => _userId;
@@ -40,17 +40,18 @@ class Auth with ChangeNotifier {
             'returnSecureToken': true
           }));
       final responseData = json.decode(res.body);
-
       if (responseData['error'] != null)
-       throw HttpException(responseData['error']['message']);
+        throw HttpException(responseData['error']['message']);
 
       _token = responseData['idToken'];
+
       _userId = responseData['localId'];
       _expiryDate = DateTime.now()
           .add(Duration(seconds: int.parse(responseData['expiresIn'])));
       _autoLogOut();
       notifyListeners();
 
+      // add userData info to SharedPreferences
       final prefs = await SharedPreferences.getInstance();
 
       String userData = json.encode({
@@ -110,7 +111,7 @@ class Auth with ChangeNotifier {
     _token = '';
     _userId = null;
     // _expiryDate = null;
-    if (_authTimer != null)_authTimer.cancel();
+    if (_authTimer != null) _authTimer.cancel();
 
     final timeToExpiry = _expiryDate.difference(DateTime.now()).inSeconds;
     _authTimer = Timer(Duration(seconds: timeToExpiry), logOut);
