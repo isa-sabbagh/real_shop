@@ -24,7 +24,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "dev_assets/MetroUI-Google-Android-Market-icon.png"
+  image_path: "dev_assets/bg-logo.png"
 
 flutter:
   uses-material-design: true
