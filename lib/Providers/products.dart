@@ -6,7 +6,6 @@ import '../Providers/product.dart';
 
 import 'package:flutter/material.dart';
 
-
 class Products with ChangeNotifier {
   List<Product> _items = [
     Product(
@@ -40,6 +39,14 @@ class Products with ChangeNotifier {
       imgUrl:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
     ),
+    Product(
+      id: 'p5',
+      title: 'A Pan',
+      desc: 'Prepare any meal you want.',
+      price: 29.99,
+      imgUrl:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
+    ),
   ];
   String authToken;
   String userId;
@@ -59,6 +66,7 @@ class Products with ChangeNotifier {
       _items.firstWhere((product) => product.id == id);
 
   Future<void> fetchAndSetProducts([bool filterByUser = false]) async {
+    print('fetchAndSetProducts->userId :$userId');
     final filteredString =
         filterByUser ? 'orderBy="creatorId"&equalto="$userId"' : '';
     var url =

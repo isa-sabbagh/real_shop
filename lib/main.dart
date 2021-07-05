@@ -53,10 +53,7 @@ class MyApp extends StatelessWidget {
                 primarySwatch: Colors.blue,
                 accentColor: Colors.deepOrange,
                 fontFamily: 'Lato'),
-            home:
-            //  MyHomePage(),
-
-             auth.isAuth
+            home: auth.isAuth
                 ? ProductOverviewScreen()
                 : FutureBuilder(
                     future: auth.tryAutoLogin(),
@@ -76,32 +73,34 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+// class MyHomePage extends StatefulWidget {
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
 
-class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin {
-  AnimationController myAnimation;
-  @override
-  void initState() {
-    super.initState();
-    myAnimation =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-  }
+// class _MyHomePageState extends State<MyHomePage>
+//     with SingleTickerProviderStateMixin {
+//   AnimationController myAnimation;
+//   @override
+//   void initState() {
+//     super.initState();
+//     myAnimation =
+//         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+//     Provider.of<Auth>(context).isAuth;
+//     print('main->isAuth :${Provider.of<Auth>(context).isAuth}');
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-            child: InkWell(
-                onTap: () => myAnimation.isCompleted
-                    ? myAnimation.reverse()
-                    : myAnimation.forward(),
-                child: AnimatedIcon(
-                    icon: AnimatedIcons.ellipsis_search,
-                    size: 100,
-                    progress: myAnimation))));
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Center(
+//             child: InkWell(
+//                 onTap: () => myAnimation.isCompleted
+//                     ? myAnimation.reverse()
+//                     : myAnimation.forward(),
+//                 child: AnimatedIcon(
+//                     icon: AnimatedIcons.ellipsis_search,
+//                     size: 100,
+//                     progress: myAnimation))));
+//   }
+// }
