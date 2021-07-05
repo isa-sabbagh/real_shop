@@ -41,11 +41,10 @@ class Products with ChangeNotifier {
     ),
     Product(
       id: 'p5',
-      title: 'A Pan',
+      title: 'Random',
       desc: 'Prepare any meal you want.',
       price: 29.99,
-      imgUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
+      imgUrl: 'https://picsum.photos/200',
     ),
   ];
   String authToken;
