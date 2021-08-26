@@ -73,7 +73,6 @@ class Products with ChangeNotifier {
 
     try {
       final res = await http.get(url);
-
       final extractedData = json.decode(res.body) as Map<String, dynamic>;
 
       if (extractedData == null) return;
@@ -114,7 +113,7 @@ class Products with ChangeNotifier {
             'imgUrl': product.imgUrl,
             'isFav': product.isFav,
             'price': product.price,
-            'creatorId': userId,
+            'creatorId': userId
           }));
 
       final newProduct = Product(
@@ -145,7 +144,7 @@ class Products with ChangeNotifier {
             'desc': newproduct.desc,
             'imgUrl': newproduct.imgUrl,
             'isFav': newproduct.isFav,
-            'price': newproduct.price,
+            'price': newproduct.price
           }));
       _items[prodIndex] = newproduct;
       notifyListeners();
@@ -160,6 +159,7 @@ class Products with ChangeNotifier {
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
 
     var existingProduct = _items[existingProductIndex];
+
     _items.removeAt(existingProductIndex);
 
     notifyListeners();

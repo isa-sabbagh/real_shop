@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "228308939241",
+    "firebase_url": "https://shop-f721b-default-rtdb.firebaseio.com",
+    "project_id": "shop-f721b",
+    "storage_bucket": "shop-f721b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228308939241:android:c1d8114b6ed9ddf68edb78",
+        "android_client_info": {
+          "package_name": "com.example.real_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228308939241-phujkm1d97q8h1uglko2k5jqeqrqdidv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpBdRfALAXWcbxVbdfACyf6OP3XY8Bmtw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228308939241-phujkm1d97q8h1uglko2k5jqeqrqdidv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

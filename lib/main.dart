@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               create: (_) => Orders(),
               update: (ctx, authValue, previousOrders) => previousOrders
                 ..gtData(authValue.token, authValue.userId,
-                    previousOrders == null ? null : previousOrders.orders)),
+                    previousOrders == null ? null : previousOrders.orders))
         ],
         child: Consumer<Auth>(
           builder: (ctx, auth, _) => MaterialApp(
@@ -56,16 +56,16 @@ class MyApp extends StatelessWidget {
                 primarySwatch: Colors.blue,
                 accentColor: Colors.deepOrange,
                 fontFamily: 'Lato'),
-            home: MyHomePage(),
+            // home: MyHomePage(),
 
-            // auth.isAuth
-            //     ? ProductOverviewScreen()
-            //     : FutureBuilder(
-            //         future: auth.tryAutoLogin(),
-            //         builder: (ctx, authSnapshot) =>
-            //             authSnapshot.connectionState == ConnectionState.waiting
-            //                 ? SplashScreen()
-            //                 : AuthScreen()),
+            home: !auth.isAuth
+                ? ProductOverviewScreen()
+                : FutureBuilder(
+                    future: auth.tryAutoLogin(),
+                    builder: (ctx, authSnapshot) =>
+                        authSnapshot.connectionState == ConnectionState.waiting
+                            ? SplashScreen()
+                            : AuthScreen()),
             routes: {
               ProductDetailScreen.routeName: (_) => ProductDetailScreen(),
               CartScreen.routeName: (_) => CartScreen(),
@@ -86,6 +86,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   AnimationController myAnimation;
+  Future<bool> _onLikeTapped(bool isLiked) async => !isLiked;
+
   @override
   void initState() {
     super.initState();
@@ -97,12 +99,11 @@ class _MyHomePageState extends State<MyHomePage>
 
   void _showDialog() {
     slideDialog.showSlideDialog(
-      context: context,
-      child: Text("Hello World"),
-      barrierColor: Colors.white.withOpacity(0.7),
-      pillColor: Colors.blueGrey,
-      backgroundColor: Colors.amber[50],
-    );
+        context: context,
+        child: Text("Hello World"),
+        barrierColor: Colors.white.withOpacity(0.7),
+        pillColor: Colors.blueGrey,
+        backgroundColor: Colors.amber[50]);
   }
 
   @override
@@ -161,6 +162,4 @@ class _MyHomePageState extends State<MyHomePage>
             //         progress: myAnimation))
             ));
   }
-
-  Future<bool> _onLikeTapped(bool isLiked) async => !isLiked;
 }
