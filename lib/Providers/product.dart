@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
-
 class Product with ChangeNotifier {
   final String id;
   final String title;
@@ -33,9 +32,7 @@ class Product with ChangeNotifier {
         'https://shop-f721b-default-rtdb.firebaseio.com/userFavorites/$userId/$id.json?auth=$token';
     try {
       final res = await http.put(url, body: json.encode(isFav));
-      if (res.statusCode >= 400) {
-        _setFavValue(oldStatus);
-      }
+      if (res.statusCode >= 400) _setFavValue(oldStatus);
     } catch (e) {
       _setFavValue(oldStatus);
     }

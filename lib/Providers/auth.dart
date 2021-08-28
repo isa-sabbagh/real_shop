@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'dart:async';
-import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import 'package:real_shop/Models/http_exception.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,7 +18,7 @@ class Auth with ChangeNotifier {
         _token != '') {
       return _token;
     }
-    return '';
+    return null;
   }
 
   String get userId => _userId;
@@ -40,17 +39,18 @@ class Auth with ChangeNotifier {
             'returnSecureToken': true
           }));
       final responseData = json.decode(res.body);
-
       if (responseData['error'] != null)
         throw HttpException(responseData['error']['message']);
 
       _token = responseData['idToken'];
+
       _userId = responseData['localId'];
       _expiryDate = DateTime.now()
           .add(Duration(seconds: int.parse(responseData['expiresIn'])));
       _autoLogOut();
       notifyListeners();
 
+      // add userData info to SharedPreferences
       final prefs = await SharedPreferences.getInstance();
 
       String userData = json.encode({
