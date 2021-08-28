@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:real_shop/Models/http_exception.dart';
 import 'package:real_shop/Providers/auth.dart';
 
+// main layout
 class AuthScreen extends StatelessWidget {
   static const routeName = '/auth';
   @override
@@ -116,17 +117,17 @@ class _AuthCardState extends State<AuthCard>
       }
     } on HttpException catch (error) {
       var errorMessage = 'Auth Failed !!';
-      if (error.toString().contains('EMAIL_EXISIS')) {
+      if (error.toString().contains('EMAIL_EXISIS'))
         errorMessage = 'This email is already in use';
-      } else if (error.toString().contains('INVALID_EMAIL')) {
+      else if (error.toString().contains('INVALID_EMAIL'))
         errorMessage = 'This is not a valid email';
-      } else if (error.toString().contains('WEAK_PASSWORD')) {
+      else if (error.toString().contains('WEAK_PASSWORD'))
         errorMessage = 'This password is very weak';
-      } else if (error.toString().contains('EMAIL_NOT_FOUND')) {
+      else if (error.toString().contains('EMAIL_NOT_FOUND'))
         errorMessage = 'There is no user with this email';
-      } else if (error.toString().contains('INVALID_PASSWORD')) {
+      else if (error.toString().contains('INVALID_PASSWORD'))
         errorMessage = 'This is not a valid password';
-      }
+
       _showErrorDailog(errorMessage);
     } catch (err) {
       const errorMessage = 'Could not authenticat you, Please try again!';

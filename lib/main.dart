@@ -54,22 +54,24 @@ class MyApp extends StatelessWidget {
                 accentColor: Colors.deepOrange,
                 fontFamily: 'Lato'),
             home:
-            //  MyHomePage(),
+                //  MyHomePage(),
 
-             auth.isAuth
-                ? ProductOverviewScreen()
-                : FutureBuilder(
-                    future: auth.tryAutoLogin(),
-                    builder: (ctx, authSnapshot) =>
-                        authSnapshot.connectionState == ConnectionState.waiting
-                            ? SplashScreen()
-                            : AuthScreen()),
+                // ignore: unrelated_type_equality_checks
+                auth.isAuth != ''
+                    ? ProductOverviewScreen()
+                    : FutureBuilder(
+                        future: auth.tryAutoLogin(),
+                        builder: (ctx, authSnapshot) =>
+                            authSnapshot.connectionState ==
+                                    ConnectionState.waiting
+                                ? SplashScreen()
+                                : AuthScreen()),
             routes: {
               ProductDetailScreen.routeName: (_) => ProductDetailScreen(),
               CartScreen.routeName: (_) => CartScreen(),
               OrderScreen.routeName: (_) => OrderScreen(),
               UserProductScreen.routeName: (_) => UserProductScreen(),
-              EditProductScreen.routeName: (_) => EditProductScreen(),
+              EditProductScreen.routeName: (_) => EditProductScreen()
             },
           ),
         ));
